@@ -6,10 +6,13 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
+
+dist
 
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100
