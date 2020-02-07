@@ -1,22 +1,57 @@
-import React from 'react'
+function Akirasan(){
+  return document.createDocumentFragment()
+}
 
-function Tamesan(...args) {
-  if (typeof args[0] === 'function') {
-    args[0]()
+function Tamesan(tagName, props, ...children) {
+  if (typeof tagName !== "string") {
+    return tagName
   }
-  console.log("Tamesan", args)
-}
-function Akirasan(...args) {
-  console.log("Akirasan", args)
+  const el = document.createElement(tagName)
+
+  if (props && props.style) {
+    Object.keys(props.style).forEach(propertyName => {
+      el.style[propertyName] = props.style[propertyName]
+    })
+  }
+
+  children.forEach(maybeElm => {
+    if (typeof maybeElm === 'string') {
+      el.appendChild(document.createTextNode(maybeElm))
+    } else {
+      el.appendChild(maybeElm)
+    }
+  })
+  return el
 }
 
-// React.createElement(React.Fragment, null, [
-//   React.createElement("h1", null, "Hello, world!"),
-//   React.createElement("h1", null, "Good bye!"),
-// ])
-const element = (
-  <>
+const elm = (
+  <div style={ {
+    display: "flex",
+    "justify-content": "center",
+    "align-items": "center",
+    width: "200px",
+    height: "100px",
+    background: "skyblue"
+  } }>
     <h1>Hello, world!</h1>
-    <h1>Good bye!</h1>
-  </>
+    <h2>Good bye!</h2>
+  </div>
 )
+document.body.appendChild(elm)
+
+setTimeout(() => {
+  document.body.removeChild(elm)
+  document.body.appendChild((
+    <div style={ {
+      display: "flex",
+      "justify-content": "center",
+      "align-items": "center",
+      width: "200px",
+      height: "100px",
+      background: "skyblue"
+    } }>
+      <h1>Hello, world2!</h1>
+      <h2>Good bye!</h2>
+    </div>
+  ))
+}, 2000)
