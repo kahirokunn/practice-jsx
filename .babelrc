@@ -4,8 +4,8 @@
   ],
   "plugins": [
     ["@babel/plugin-transform-react-jsx", {
-      "pragma": "Tamesan",
-      "pragmaFrag": "Akirasan",
+      "pragma": "Didact.createElement",
+      "pragmaFrag": "Didact.createFragment",
       "throwIfNamespace": false
     }]
   ]
